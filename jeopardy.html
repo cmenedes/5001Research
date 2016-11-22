@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type = "text/javascript" src = "readFile.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js" type="text/javascript"></script>
+<link rel ="stylesheet" type ="text/css" href ="style.css"/>
+
+</head>
+
+<div id = "dialog">Select Lab <br>
+	<a id = "Lab1" value = "Lab1" href="?jeopardy_info.js&1"> Lab 1 </a>
+	<a id = "Lab2" value = "Lab2" href="?jeopardy_info2.js&2"> Lab 2 </a>
+	<a id = "Lab4" value = "Lab4" href="?jeopardy_info3.js&4"> Lab 4 </a>
+ </div>
+<div id = "mainpage" onclick = "selectLab();"  > </div>
+<script>
+$( document ).ready(function(){loadBG();});
+
+</script>
+
+<body onload = "init(MainView.children.Table1);"> <!--LoadJeopardyBoard(MainView.children.Table1);"> -->
+
+		<div class="Content" align="center">
+			<h1 id = "heading" ></h1>
+			<div id="MainView">
+				<table id ="Table1" align ="center" border = "1" cellspacing="5" cellpadding="0" width = "1080" height = "720">
+				</table>
+			</div>
+			<div id="questionsBoard">
+				<div id = "category">Category </div>
+				<br>
+				<div id = "timer">Time Remaining: 30</div>
+				<br>
+				<div id="questions"> Question </div> 
+				<div id= "images">
+				<img src = '#' id = 'image'></img>
+				</div>
+				<div id="buttons">
+					<button type="button" id = "bAnswer">Show Answer!</button>
+					<button type="button" id = "boardB">Back to Board</button>
+				</div>
+				<br>
+				<div id ="answers">Answer</div>
+				<br>
+				
+			</div>
+		</div>
+
+<script> 
+var choice = window.location.search.substring(1);
+var split = choice.split('&');
+loadjscssfile(split[0], "js");
+document.getElementById('heading').innerHTML = "Jeopardy! Lab " + split[1];
+if(choice!=""){
+	$('.Content').show();
+	$('#mainpage').hide(); }
+
+</script>
+
+
+	</body>
+</html>
