@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mini Boxes</title>
+		<link rel="stylesheet" type="text/css" href="mbstyle.css"/> 
+		<script type = "text/javascript" src = "mbfunctions.js"></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js" type="text/javascript"></script>
+	</head>
+	<script>
+	//init();
+	window.onload = init();
+	
+	</script>
+	<body>
+		<div id = "main" >
+		<h1><strong> Lab #5:<br> Mini Boxes Game Challenge</strong></h1>
+		</div>
+		
+		<div id = "directions" >
+		<script> $('#directions').hide(); </script>
+		<h2><strong>INSTRUCTIONS</strong></h2>
+		<ul>
+			<li>There are 7 boxes, corresponding to 7 game levels.</li>
+			<li>Each box contains two multiple choice questions.</li>
+			<li>You must correctly answer both questions in a box to unlock the next box.</li>
+			<li>If you choose an incorrect answer, you will be given chances to try again until you answer correctly.</li>
+			<li>Unlock and complete all 7 boxes to become a Mini Box Champion!</li>
+			
+		</ul>
+		
+		
+		
+		
+		<h3 id="playbutton">Play Mini Boxes!</h3></a>
+		</div>
+		
+		<div id = "levels">
+		<script> $('#levels').hide(); </script>
+		<h2 style="color: white">Click on an unlocked box to play!</h2>
+		<!--<div id = "boxes">
+		<img src = "#" id = "box"> </img> 
+		</div>-->
+		<!--<img src="./images/redbox.png"/>
+		<img src="./images/orangebox.png", id="locked"/>
+		<img src="./images/greenbox.png", id="locked"/>
+		<img src="./images/bluebox.png", id="locked"/>
+		<img src="./images/yellowbox.png", id="locked"/>
+		<img src="./images/purplebox.png", id="locked"/>
+		<img src="./images/violetbox.png", id="locked"/>
+		-->
+		</div>
+		
+		<script>
+		document.getElementById("main").onclick = function() {
+			$('#main').hide(); 
+			$('#directions').show();
+		};
+		document.getElementById("playbutton").onclick = function() {
+			$('#directions').hide(); 
+			$('#levels').show();
+			loadBoxes();
+		};
+		//document.getElementById("main").onclick = swapDivs("main", "directions");
+		</script>
+		
+		
+		
+	</body>
+</html>
