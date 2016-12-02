@@ -14,7 +14,7 @@
 		
 		}
 	
-	h3 {
+	/*h3 {
 		text-align: center;
 		background-color: purple;
 		padding:20px;
@@ -23,6 +23,17 @@
 		color: black;
 		font-family: "Comic Sans MS", cursive, sans-serif;
 		width: 200px;
+	}*/
+	#playbutton {
+		text-align: center;
+		background-color: purple;
+		padding:20px;
+		border: 5px solid black;
+		position: relative;
+		color: black;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		width: 200px;
+	
 	}
 		
 	a:link, a:visited{
@@ -60,10 +71,12 @@
    		cursor: default;
 	}
 	#main {
-	
+		
 		background-image: url(rainbow.jpg);
 		background-size: 100%;
-		background-position: attachment;
+		height: 1000px;
+		width: 100%;
+		/*background-position: attachment; */
 			
 	}
 	#directions {
@@ -71,11 +84,15 @@
 		background-image: url(rainbow4.jpg);
 		background-repeat: no-repeat;
 		background-size: 100%;
+		height: 1000px;
+		width: 100%;
 	}
 	
 	#levels {
 		display:none;
-		background-color: black;	
+		background-color: black;
+		height: 1000px;
+		width: 100%;		
 	}
 	#boxes {
 		font-size: 50px;
@@ -86,7 +103,25 @@
 	}
 	#quiz {
 		display: none;
+		width: 500px;
+		height: 100px;
 
 	}
+	#questionID {
+		text-align: center;
+		background-color: purple;
+		padding:20px;
+		border: 5px solid black;
+		/*position: relative; */
+		color: black;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		width: 50%;
+		left: 40%;
+		margin: 0 auto; 
+	}
+	ol {
+	list-style-type: upper-alpha;
+	}
+	
 	
 		
