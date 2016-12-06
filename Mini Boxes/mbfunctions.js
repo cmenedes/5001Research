@@ -6,6 +6,8 @@ $(d1).hide();
 $('#directions').show();
 //alert(data.boxes[0].color);
 }*/
+var numWrong = 0;
+var numCorrect = 0;
 function swapDivs(div1, div2){
 
 var d1 = document.getElementById(div1);
@@ -16,8 +18,8 @@ $(d2).show();
 }
 function init(){
 	loadjscssfile("mbjson.js", "js");
-	
 }
+
 function loadjscssfile(filename, filetype){
     try{
     if (filetype=="js"){ //if filename is a external JavaScript file
@@ -90,246 +92,117 @@ function loadQuestion(){
 function displayQuestion(i) { 
 
 
-	var numWrong = 0;
+	numWrong = 0;
+	numCorrect = 0;
 	var bgColor = data.boxes[i].color;
 	document.body.style.background = bgColor; //set background color according to color of box selected
 	//document.getElementById("quiz").style.background = bgColor;
-	console.log("hello");
-	alert(bgColor);
 	$('#levels').hide();
-	
+	$('#q1').show();
+	$('#ans1').show();
 	//$('#questions').show();
-	
+	//iterates through questions per box
 	for(var j = 0; j < data.boxes[i].questions.length; j++){
 
-		
+
 		alert("Question " + (j + 1) + " " + data.boxes[i].questions[j].clue);
-		
 
 
 
-
-
-
-
-		//was trying to get this whole part to work but it didn't seem to
-		/*var qElement = $('<div>', {
-      id: 'question'
-    });
-
-    	var header = $('<h2>Question ' + (j + 1) + ':</h2>');
-    	qElement.append(header);
-
-    	var question = $('<p>').append(data.boxes[i].questions[j].clue);
-    	qElement.append(question);
-    
-    	
-
-    	$('#quiz').append(qElement);*/
-		
-		/*var f = document.createElement("form");
-		f.setAttribute('method',"post");
-		f.setAttribute('action',"submit.php");*/
-		
-		//create form for question
-		/*var f = document.createElement("form");
-		//f.setAttribute('method',"post");
-		f.setAttribute('action',"submit.php");
-		//f.setAttribute('onsubmit',"alert('hello')");
-		//f.setAttribute('action',"demo_form.asp");
-		f.setAttribute('id',"question" + j);
-		*/
-		
 		$('#quiz').show();
-		var quiz = document.getElementById('quiz');
-
-		
-
-		
-		//alert(data.boxes[i].questions[j].choices.length);
-		var d = document.createElement("div");
-		d.setAttribute("id", "question" + j)
-		//create header element for question
-		var h = document.createElement("h3");
-		h.setAttribute('id', "questionID");
+		var d = document.getElementById("quiz");
+		var h = document.getElementById("q" + (j+1));
+		var ans = document.getElementById("ans" + (j+1));
+		if(j > 0){
+			h.setAttribute("class", "question hidden");
+			ans.setAttribute("class", "answer hidden");
+		}
 		h.innerHTML = "Question #" + (j + 1) + " " + data.boxes[i].questions[j].clue;
-		d.append(h);
-		//d.appendChild(h);
+
+
+
 		
-		var divEl = document.getElementById(d);
-		//alert("calling create radio");
-
-
-		//var radioList = $('<ol>');
-		var radioList = document.createElement("ol");
-    	var item;
-    	var input = '';
-    	var input = document.createElement("input"); 
-
+		//iterates through choices
     	for (var k = 0; k < data.boxes[i].questions[j].choices.length; k++) {
+    		//var choice = document.createElement("span");
+      		//cell.outerHTML = "<td href='#' onclick = 'showQuestion(" + i +"," +j + ")' id='cell_" + i+j + "'>" + "$" + data.categories[j].questions[i].value + "</td>";
 
-      		//item = $('<li>');
-      		item = document.createElement("li");
-      		input.setAttribute("type", "radio");
-      		input.setAttribute("name", "question" + j);
-      		input.setAttribute("value", k+1);
-      		input.setAttribute("id", k);
-      		//input.setAttribute("onclick", function(){alert("clicked");})
-      		//input.onclick = function() { alert("clicked");};
-      		var inp = document.getElementById(input);
-      		//input.setAttribute("onchange", "functio")
       		
-      		
-      		//item.setAttribute("type", "radio");
-      		item.append(input);
-      		item.innerHTML += data.boxes[i].questions[j].choices[k];
-      		//input = '<input type="radio" name="answer" value=' + k + ' />';
-      		//input += data.boxes[i].questions[j].choices[k];
-      		
-      		radioList.append(item);
-      		//alert(data.boxes[i].questions[j].choices[k]);
+      		var S = "";
+
+      		var funct = "";
+
+      		//while(numWrong < 3){
+      		if (data.boxes[i].questions[j].answer == k)
+      		{
+      			//console.log(k);
+
+      			funct = "correctAnswer()";
+      		}
+      		else
+      		{
+      			funct = "wrongAnswer(q" + j +  "a" + k + ")";
+      		}// }
+
+      		S = S + "<div href='#' id = 'q" + j +  "a" + k + "' onclick='"+ funct +"'> (" + k + ") " + data.boxes[i].questions[j].choices[k] + "</div>"; 
+      		//console.log(data.boxes[i].questions[j].choices[k]);
+      		ans.innerHTML += S;
+
+    	}//end k
 
 
+	}//end j
+
+}
+
+function wrongAnswer(divID)
+{
+	alert("wrong"); //testing function
+	console.log("wrong");
+	numWrong++;
+	//turn red
+	$(divID).hide();
 
 
-			/*
-      		radioButton  = document.createElement('input');
-				radioButton.type = 'radio';
-				radioButton.name = 'quiz' + j;
-				radioButton.id = 'choice'+ (i+1);
-				radioButton.value = data.boxes[i].questions[j].choices[k];
+	//Take away points
+	//hide wrong answer
+}
 
-			var label = document.createElement('label');
-				label.setAttribute('for','choice'+ (i+1));
-				label.innerHTML = data.boxes[i].questions[j].choices[k];
+function correctAnswer()
+{
+	numCorrect++;
+	alert("Correct"); //testing function
+	console.log("Correct");
+	$('#q2').show();
+	$('#ans2').show();
+	$('#q1').hide();
+	$('#ans1').hide();
 
-				var br = document.createElement('br');
-				document.getElementById("question" + j).insertBefore(br);
-				document.getElementById("question" + j).insertBefore(label, br);
-				document.getElementById("question" + j).insertBefore(radioButton, label); */
-    	}
-
-    	d.append(radioList);
-    	var s = document.createElement("input"); 
-			s.setAttribute('type',"button");
-			s.setAttribute('value',"Submit" + j);
-			s.setAttribute('id', "submit" + j);
-			//s.setAttribute('onclick', checkAnswer(j));
-		//d.append(s);
-		radioList.append(s); 
-
-
-		
-		//var radioButtons = createRadios(i,j);
-		//d.append(radioButtons)
-    	//$(divEl).append(radioButtons);
-		//$("question" + j).append(radioButtons);
-		/*	for( var c = 0; c < data.boxes[i].questions[j].choices.length; c++){
-		
-				var x = document.createElement("input"); //create input element
-				//create radio button
-				x.setAttribute('type',"radio");
-				//x.setAttribute('style',"display:block");
-				x.setAttribute('id',"choice_" + (c + 1));
-				x.setAttribute('name',j); 
-				x.setAttribute('value',"choice" + c); 
-				x.setAttribute('label',"choice" + c);
-				
-				//create p element for choice
-				var choice = document.createElement('p');
-				choice.innerHTML = data.boxes[i].questions[j].choices[c];
-				//x.appendChild(choice);
-				//var label = document.createElement('label');
-				//label.appendChild(x);
-				//label.appendChild("hello")
-				
-				//create input element for submit
-			var s = document.createElement("input"); 
-				s.setAttribute('type',"submit");
-				s.setAttribute('value',"Submit");
-				
-			f.appendChild(x);//append radio to form
-			f.appendChild(choice);//append choice to form
-			
-			//f.appendChild(label);
-			//f.appendChild(s);
-			}
-			f.appendChild(s);//append submit to form
-			document.getElementsByTagName('body')[0].appendChild(f);//append form to body
-			//document.getElementById("question" + j).onsubmit = function() {alert("hello");};
-			document.getElementById("question" + j).addEventListener("click", function(event){
-			alert("Hello");
-    event.preventDefault();
-});
-			*/
-
-			document.getElementsByTagName('body')[0].appendChild(d);
-
-
-//and some more input elements here
-//and dont forget to add a submit button
-
-		
-    	$('#quiz').show();
-
-
-    	
-    	//
-    	//the commented out part is not tested. this loops through choices for a given question. sample logic for checking if an answer is correct
-		/*for(var k = 0; k < data.boxes[i].questions[j].choices.length; k++){
-			alert("Choice " + (k + 1) + " " + data.boxes[i].questions[j].choices[k]);
-		}*/
-		/*	buttonId.setAttribute('id', k + 1);
-			var input = document.getElementById(k+1);
-			while(numWrong < 2){
-				if(input == data.boxes[i].questions[j].answer){
-					alert("Correct!");
-					$('#questions').hide();
-					$('#levels').show();
-				}
-				else {
-					numWrong++;
-				}
-			}
-		} */
+	if($('#q2').is(":visible") && numCorrect >= 2 ) {
+		console.log("is visible");
+		$('#quiz').hide();
+		//set box to grayscale/locked
+		$('#levels').show();
+		reset();
 	}
-	/* for testing purposes
-	for(var j = 0; j < data.boxes[i].questions.length; j++){
-		setClicks(j);
-} */
+
+	//turn green
+	//Show Next Question
+	//Call function to reset everything
+	//go back to level div
 }
 
-function setClicks(j){
-	var sub = document.getElementById("submit" + j);
-	sub.addEventListener("click", checkAnswer(j));
-
+//clear content of questions and answers, hide the divs
+function reset(){
+	$('#q2').contents().remove();
+	$('#ans2').contents().remove();
+	$('#q1').contents().remove();
+	$('#ans1').contents().remove();
+	$('#q2').hide();
+	$('#ans2').hide();
+	$('#q1').hide();
+	$('#ans1').hide();
 }
-function checkAnswer(j){
-	var el = document.getElementsByName("question" + j);
-		alert("in check answer");
-	    for (var radio in el) {
-	        if (el[radio].checked) {
-	            console.log(el[radio].value);  alert("Alert: el[radio].value");
-	        }
-	    } 
-
-}
-function createRadios(i,j) {
-	alert("creating radio " + j);
-    var radioList = $('<ol>');
-	//var radioList = document.createElement("ol");
-    var item;
-    var input = '';
-    for (var k = 0; k < data.boxes[i].questions[j].choices.length; k++) {
-      item = $('<li>');
-      input = '<input type="radio" name="answer" value=' + k + ' />';
-      input += data.boxes[i].questions[j].choices[k];
-      item.append(input);
-      radioList.append(item);
-      alert(data.boxes[i].questions[j].choices[k]);
-    }
-    return radioList;
-  }
 
 function loadBoxes(){
 	for(var i = 0; i < data.boxes.length; i++){
@@ -344,15 +217,6 @@ function loadBoxes(){
 		//image.setAttribute('left', i*100);
 		var div = document.getElementById("levels");
 		div.appendChild(image);
-		//image.onclick = function () { alert(data.boxes[i].color);};
-		//$(data.boxes[i].color).onclick = function() { alert("yes");};
-		//alert(data.boxes[i].color);
 		
-		//var image = document.getElementById('box');
-		//image.src = data.boxes[i].img;
-		//dynamically create img element
 		}
-}
-function readData(){
-	alert(data);
 }

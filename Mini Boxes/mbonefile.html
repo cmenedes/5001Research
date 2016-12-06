@@ -51,10 +51,17 @@
 		-->
 		</div>
 		<div id = "quiz">
-
+			<div id = "q1" class="question"> </div>
+			<div id = "ans1" class="answer"> </div>
+			<div id = "q2" class="question"> </div>
+			<div id = "ans2" class="answer"> </div>
 		</div>
+
 		
 		<script>
+		$('#quiz').hide();
+
+
 		document.getElementById("main").onclick = function() {
 			$('#main').hide(); 
 			$('#directions').show();
@@ -64,6 +71,7 @@
 			$('#levels').show();
 			loadBoxes();
 		};
+		
 		//document.getElementById("main").onclick = swapDivs("main", "directions");
 		</script>
 		

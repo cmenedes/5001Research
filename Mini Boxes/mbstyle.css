@@ -1,3 +1,11 @@
+	.hidden {
+		display:none;
+	}
+	.show {
+		display: inline;
+	}
+
+
 	h1 {
 		color: white;
 		font-family: "Comic Sans MS", cursive, sans-serif;
@@ -119,8 +127,36 @@
 		left: 40%;
 		margin: 0 auto; 
 	}
+	#quiz{
+		text-align: center;
+		background-color: purple;
+		padding:20px;
+		border: 5px solid black;
+		/*position: relative; */
+		color: black;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		width: 50%;
+		left: 40%;
+		margin: 0 auto; 
+	}
 	ol {
 	list-style-type: upper-alpha;
+	}
+
+	.question
+	{
+		width: 600px;
+		background: blue; 
+	}
+
+	.answer
+	{
+		width: 600px;
+		background: red; 
+	}
+	.locked
+	{
+		filter: grayscale(100%);
 	}
 	
 	
