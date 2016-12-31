@@ -4,8 +4,9 @@
 		<title>Mini Boxes</title>
 		<link rel="stylesheet" type="text/css" href="mbstyle.css"/> 
 		<script type = "text/javascript" src = "mbfunctions.js"></script>
-		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js" type="text/javascript"></script>
+		<!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> -->
+		<script src="../jquery-3.1.1.min.js"></script>
+		<!--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js" type="text/javascript"></script> -->
 	</head>
 	<script>
 	//init();
@@ -13,18 +14,23 @@
 	
 	</script>
 	<body>
-		<div id = "main" >
-		<h1><strong> Lab #5:<br> Mini Boxes Game Challenge</strong></h1>
+
+		<div id = "main" class = "wrapper" >
+			<!--<img src = "rainbow.jpg" alt = ""> -->
+		<div id = "mainText" class = "wrapper" ><h1><strong> Lab #5:<br>The Secret of <br>The French Bulldogs</strong></h1> </div>
+		
 		</div>
 		
-		<div id = "directions" >
+		<div id = "directions" class = "wrapper" >
 		<script> $('#directions').hide(); </script>
 		<h2><strong>INSTRUCTIONS</strong></h2>
 		<ul>
 			<li>There are 7 boxes, corresponding to 7 game levels.</li>
 			<li>Each box contains two multiple choice questions.</li>
 			<li>You must correctly answer both questions in a box to unlock the next box.</li>
+			<li>Each correct answer is worth 1 point.</li>
 			<li>If you choose an incorrect answer, you will be given chances to try again until you answer correctly.</li>
+			<li>If you answer correctly on the first try, you will receive 2 bonus points, and 1 bonus point on the second try.</li>	
 			<li>Unlock and complete all 7 boxes to become a Mini Box Champion!</li>
 			
 		</ul>
@@ -32,12 +38,13 @@
 		
 		
 		
-		<h3 id="playbutton">Play Mini Boxes!</h3></a>
+		<h3 id="playbutton">Play Mini Boxes!</h3>
 		</div>
 		
-		<div id = "levels">
+		<div id = "levels" class = "wrapper">
 		<script> $('#levels').hide(); </script>
-		<h2 style="color: white">Click on an unlocked box to play!</h2>
+		<h2 id = "play" style="color: white">Click on an unlocked box to play!</h2>
+		<div id = "pts" >Points: </div>
 		<!--<div id = "boxes">
 		<img src = "#" id = "box"> </img> 
 		</div>-->
@@ -55,12 +62,21 @@
 			<div id = "ans1" class="answer"> </div>
 			<div id = "q2" class="question"> </div>
 			<div id = "ans2" class="answer"> </div>
+			<div id = "points">Points: </div>
+			<div align = "center">
+			<h3 id = "nextbutton" class = "buttons">Next Question</h3>
+			<h3 id = "backbutton" class = "buttons">Back to Boxes</h3>
+			
+			</div>
 		</div>
 
 		
 		<script>
-		$('#quiz').hide();
 
+		setup();
+		/*$('#quiz').hide();
+		$('#q2').hide();
+		$('#ans2').hide();
 
 		document.getElementById("main").onclick = function() {
 			$('#main').hide(); 
@@ -71,6 +87,27 @@
 			$('#levels').show();
 			loadBoxes();
 		};
+		document.getElementById("backbutton").onclick = function() {
+
+			reset();
+
+		};
+		document.getElementById("nextbutton").onclick = function() {
+			
+			$('#q2').show();
+			$('#ans2').show();
+			$('#q1').hide();
+			$('#ans1').hide();
+			$('#nextbutton').css( 'pointer-events', 'none' );
+			//$('#backbutton').css( 'pointer-events', 'none' );//unclickable
+			//$('#backbutton').css( 'display', 'none' );
+			var next = document.getElementById('nextbutton');
+			next.setAttribute( 'class', 'buttons' );//sets nextbutton to default class
+			var back = document.getElementById('backbutton');
+			back.setAttribute( 'class', 'buttons' );//sets nextbutton to default class
+			
+
+		};*/
 		
 		//document.getElementById("main").onclick = swapDivs("main", "directions");
 		</script>
