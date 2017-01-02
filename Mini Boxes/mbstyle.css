@@ -106,7 +106,7 @@
 		} 
 	#main {
 		
-		background-image: url(rainbow.jpg);
+		background-image: url(./images/rainbow.jpg);
 		/*padding: 100px; */
 		cursor:pointer;
 		/*background-position: attachment; */
@@ -135,7 +135,7 @@
 
 	#directions {
 		display:none;
-		background-image: url(rainbow4.jpg);
+		background-image: url(./images/rainbow4.jpg);
 		background-repeat: no-repeat;
 		padding: 100px;
 		background-size: cover;
